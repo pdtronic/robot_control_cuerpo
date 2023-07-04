@@ -1,0 +1,14 @@
+# Writing all output to: D:\Documents\electr??nica\robot\version_2\placas\shield sensor flexible arduino.log
+Warning reading file on line 412!
+Undefined pin id for DIGITALES PWM-8
+set pad_wire_necking on
+bus diagonal
+fanout 5
+route 50
+clean 2
+route 50 16
+clean 2
+filter 5
+recorner diagonal
+status_file
+
