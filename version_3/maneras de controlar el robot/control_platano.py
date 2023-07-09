@@ -11,7 +11,7 @@ def toggle():#funcion del boton
     btn.config(text=bntVar.get())
 
 def onclossing():
-    arduino.sendData([0,0,0,0])
+    arduino.sendData([0,0,0,0,0])
     #print("lower=np.array(["+str(hMin.get())+","+str(sMin.get())+","+str(vMin.get())+"])")
     #print("upper=np.array(["+str(hMax.get())+","+str(sMax.get())+","+str(vMax.get())+"])")
     root.quit()
@@ -106,10 +106,10 @@ def callback():
                        +str(izquierda)+" ,aceleracion:"+str(acelerador)+", "+str(distancia))#informacion que se muestra en el hmi
         
         if bntVar.get()== 'pause':
-            arduino.sendData([acelerador,0,derecha,izquierda])# cuando se pulsa strar
+            arduino.sendData([acelerador,0,derecha,izquierda,0])# cuando se pulsa strar
 
         else:
-            arduino.sendData([0,0,0,0])#cuando se pulsa stop se envia 0 a los movimientos del robot 
+            arduino.sendData([0,0,0,0,0])#cuando se pulsa stop se envia 0 a los movimientos del robot 
         
         #mostrar imagen el hmi
         img1= cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)

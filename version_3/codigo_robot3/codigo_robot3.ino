@@ -1,10 +1,10 @@
-#include <RF24.h>
-
 /*
    Este el codigo para una shield de motores puente en H
    diseñadp por: José Antonio Martín pretel
    fecha de cracion: 30/5/2023
 */
+#include <RF24.h>
+
 // definimos los pines a los que van a ir conectados los pines del L293D
 #define IN1_C1 8
 #define IN2_C1 7
@@ -33,7 +33,7 @@ struct datos
   uint8_t valor_derecha;
   uint8_t valor_izquierda;
   uint8_t valor_direccion;
-  //uint8_t rotacion;
+  uint8_t rotacion;
 } entrada;
 
 //diferentes funciones
@@ -85,7 +85,9 @@ void control()
   comunicacion();
 
   // dirreción
-   if ((entrada.valor_direccion < 40) && (entrada.valor_derecha < 40) && (entrada.valor_izquierda < 40))
+  if (entrada.rotacion >40)
+    rotacion(entrada.valor_aceleracion);
+   else if ((entrada.valor_direccion < 40) && (entrada.valor_derecha < 40) && (entrada.valor_izquierda < 40))
     adelante(entrada.valor_aceleracion);
   else if ((entrada.valor_direccion > 40) && (entrada.valor_derecha < 40) && (entrada.valor_izquierda < 40))
     atras(entrada.valor_aceleracion);

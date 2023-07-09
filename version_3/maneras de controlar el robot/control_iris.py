@@ -15,7 +15,7 @@ def toggle():#funcion del boton
 
 
 def onclossing():
-    arduino.sendData([0,0,0,0])#para el robot
+    arduino.sendData([0,0,0,0,0])#para el robot
     root.quit()
     cap.release()
     print('desconetar camara')
@@ -103,10 +103,10 @@ def callback():
             cv2.putText(frame, f"{iris_posx}, {ratio:.2f}", (30, 30), 1, 1.5, (128, 0, 250), 2)
 
         if bntVar.get()== 'pause':
-            arduino.sendData([0,0,izquierda,derecha])# cuando se pulsa strar
+            arduino.sendData([0,0,izquierda,derecha,0])# cuando se pulsa strar
 
         else:
-            arduino.sendData([0,0,0,0])#cuando se pulsa stop se envia 0 a los movimientos del robot 
+            arduino.sendData([0,0,0,0,0])#cuando se pulsa stop se envia 0 a los movimientos del robot 
 
 
         img=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)

@@ -16,7 +16,7 @@ byte direcion[][6] = {"0"};
 String inputString = "";  // Almacenar la cadena recibida
 bool stringComplete = false;// Indicar que ha recibido una cadena
 const char separator = ','; // Separador (,)
-#define longitud 4 // Cantidad de datos que vamos recibir
+#define longitud 5 // Cantidad de datos que vamos recibir
 uint8_t data[longitud]; // Vector que va almacenar los datos recibidos
 
 
@@ -26,7 +26,7 @@ struct datos
   uint8_t derecha;
   uint8_t izquierda;
   uint8_t direcion;
-  //uint8_t rotacion;
+  uint8_t rotacion;
 } salida;
 
 
@@ -56,7 +56,7 @@ void loop() {
   salida.direcion  = data[1];
   salida.derecha = data[2];
   salida.izquierda = data[3];
-  //salida.rotacion= data[4];
+  salida.rotacion= data[4];
 
 
 //////////////envio de datos//////////////

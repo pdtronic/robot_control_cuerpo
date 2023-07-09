@@ -17,7 +17,7 @@ def toggle():#funcion del boton
 
 
 def onclossing():
-    arduino.sendData([0,0,0,0])#para el robot
+    arduino.sendData([0,0,0,0,0])#para el robot
     root.quit()
     cap.release()
     print('desconetar camara')
@@ -55,7 +55,7 @@ def callback():
             coordinate_ft=[]#coordenadas de la punta de los dedos
             coordinate_fb=[]#coordenadas de la base de los datos
 
-            mp_drawing.draw_landmarks(#dibula los puntos de la mano y las conexiones
+            mp_drawing.draw_landmarks(#dibula los puntos de la mano y las conexiones 
             frame, results.right_hand_landmarks, mp_holistic.HAND_CONNECTIONS)
 
             #palma de la mano
@@ -109,8 +109,8 @@ def callback():
 
         #cuerpo (brazo)
         if results.pose_landmarks is not None:
-            mp_drawing.draw_landmarks(
-            frame, results.pose_landmarks, mp_holistic.POSE_CONNECTIONS)
+            # mp_drawing.draw_landmarks(
+            # frame, results.pose_landmarks, mp_holistic.POSE_CONNECTIONS)
                 
             codox=int(results.pose_landmarks.landmark[14].x*width)#obtiene las coordenas en x
             codoy=int(results.pose_landmarks.landmark[14].y*height)#obtiene las coordenas en y
@@ -150,10 +150,10 @@ def callback():
 
 
         if bntVar.get()== 'pause':
-            arduino.sendData([salida_codo,dirrecion,0,0])# cuando se pulsa strar
+            arduino.sendData([salida_codo,dirrecion,0,0, rotacion])# cuando se pulsa strar
 
         else:
-            arduino.sendData([0,0,0,0])#cuando se pulsa stop se envia 0 a los movimientos del robot 
+            arduino.sendData([0,0,0,0,0])#cuando se pulsa stop se envia 0 a los movimientos del robot 
 
 
         img=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
