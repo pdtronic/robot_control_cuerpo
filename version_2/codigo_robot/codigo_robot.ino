@@ -89,7 +89,7 @@ void control()
   else if ((entrada.valor_dedo > 40) && (entrada.valor_muneca_derez > 200) && (entrada.valor_muneca_iz > 200))
     atras(lado_derecho, lado_izquierdo);
   /*      el valor de lado derecho debe ser dirrectamente proporcional
- *      con ek valor del codo, para que este nunca sea mayor que el valor del codo
+ *      con el valor del codo, para que este nunca sea mayor que el valor del codo
  *      y el rango que nos movemos es de 0 a 200
  *      regla de 3
  *      valor_muñeca_iz----200
@@ -116,8 +116,8 @@ void control()
   lado_izquierdo = entrada.valor_codo;
 } //control
 
-//si la muñena izquirda la muevo mas de x, q las ruedas del lado derecho disminuña x
-//si la muñena derecha la muevo mas de x, q las ruedas del lado izquierdo disminuña x
+//si la muñeca izquirda la muevo mas de x, q las ruedas del lado derecho disminuñe x
+//si la muñeca derecha la muevo mas de x, q las ruedas del lado izquierdo disminuñe x
 // si no, que las 4 tengan la misma velocidad
 
 void comunicacion()

@@ -107,7 +107,7 @@ void comunicacion()
 void transformacion()
 {
   /*esta funcion se encarga de leer los datos, ponerle limites superior
-  *he inferior y convertir variables de entrada 10bit en salida de 8 bit,
+  *e inferior y convertir las variables de entrada 10bit en salida de 8 bit,
   * haciendo una recla de 3
   */
   permanente.codo = analogRead(CODO) - inicial.codo; //ponemos a 0 los valores de los sensores
@@ -140,7 +140,7 @@ void transformacion()
 
 void modo_2()
 { /* este modo es para controlar el coche
-  * con 1 sensor flexible la direcion y la velocidad
+  * con un sensor flexible la direcion y la velocidad
   * con el sensor de ultrasonidos. Cuando entra 
   * este modo el led parpadea
   */
@@ -162,7 +162,7 @@ void modo_2()
   Serial.println(distancia);
   Serial.print("flex: ");
   Serial.println(salida.dedo);
-  radio.write(&salida, sizeof(salida)); //envia los daots
+  radio.write(&salida, sizeof(salida)); //envia los datos
 }
 
 void sensor_distancia()
@@ -182,7 +182,7 @@ void sensor_distancia()
 
   if (distancia < 5)
     distancia = 0;
-  salida.codo = map(distancia, 40, 0, 0, 255); // es directa inversa
+  salida.codo = map(distancia, 40, 0, 0, 255); // es una regla de 3 directamente inversa
 }
 
 void sensor_flexible()

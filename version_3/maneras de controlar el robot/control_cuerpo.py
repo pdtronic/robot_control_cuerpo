@@ -109,8 +109,8 @@ def callback():
 
         #cuerpo (brazo)
         if results.pose_landmarks is not None:
-            #mp_drawing.draw_landmarks(
-            #frame, results.pose_landmarks, mp_holistic.POSE_CONNECTIONS)
+            mp_drawing.draw_landmarks(
+            frame, results.pose_landmarks, mp_holistic.POSE_CONNECTIONS)
                 
             codox=int(results.pose_landmarks.landmark[14].x*width)#obtiene las coordenas en x
             codoy=int(results.pose_landmarks.landmark[14].y*height)#obtiene las coordenas en y
@@ -171,7 +171,7 @@ def callback():
 
 
 ##########camara ip#############
-url= 'http://192.168.31.55:8080/shot.jpg'
+url= 'http://192.168.0.3:8080/shot.jpg'
 cap= cv2.VideoCapture(url)
 
 if cap.isOpened():

@@ -8,6 +8,8 @@
 #define CE 9
 #define CSN 10
 
+#define DEBUG 0
+
 RF24 radio(CE, CSN);
 byte direcion[][6] = {"0"};
 
@@ -29,7 +31,6 @@ struct datos
 
 
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(115200); // monitor serial
   // configuracion del nrf24l01
   radio.begin();
@@ -40,11 +41,11 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+//////////////recepcion de datos//////////////
   if (stringComplete) {
     for (uint8_t i = 0; i < longitud; i++) {
       int index = inputString.indexOf(separator); //cuenta cuantos caracteres hay hasta el separador
-      data[i] = inputString.substring(0, index).toInt(); //almacema desde el caracter 0 hasta el separador y lo  convierte en int
+      data[i] = inputString.substring(0, index).toInt(); //almacema desde el caracter 0 hasta el separador, y lo convierte en int
       inputString = inputString.substring(index + 1);
     }
     inputString = "";//limpiamos la cadena
@@ -56,16 +57,20 @@ void loop() {
   salida.derecha = data[2];
   salida.izquierda = data[3];
   //salida.rotacion= data[4];
-  
+
+
+//////////////envio de datos//////////////
   radio.write(&salida, sizeof(salida));
-  /*Serial.print("aceleracion: ");
+  #if DEBUG
+  Serial.print("aceleracion: ");
   Serial.println(salida.aceleracion);
-  Serial.print("MUÑENA izquierda: ");
+  Serial.print("izquierda: ");
   Serial.println(salida.izquierda);
-  Serial.print("muñeca derecha: ");
+  Serial.print("derecha: ");
   Serial.println(salida.derecha);
   Serial.print("direcion : ");
-  Serial.println(salida.direcion );*/
+  Serial.println(salida.direcion );
+  #endif
   delay(100);
 }
 
@@ -73,7 +78,7 @@ void serialEvent() {
   while (Serial.available()) {
     char inchar = (char)Serial.read(); //leemos caracter a caracter
     inputString += inchar; //almacenamos toda la cadena
-    if (inchar == '\n') { // si leemos \n esque ha terminado la cadena
+    if (inchar == '\n') { 
       stringComplete = true;
     }
   }

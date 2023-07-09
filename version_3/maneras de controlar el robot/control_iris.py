@@ -123,7 +123,7 @@ def callback():
 
 
 ##########camara ip#############
-url= 'http://192.168.31.55:8080/shot.jpg'
+url= 'http://192.168.0.3:8080/shot.jpg'
 cap= cv2.VideoCapture(url)
 
 if cap.isOpened():
